@@ -20,6 +20,9 @@ class WarehousesController < ApplicationController
     warehouse.save()
 
     # 3 - Redirecionar para a tela incial
+    flash[:notice] = "Galpão cadastrado com sucesso."
     redirect_to root_path
+
+    # redirect_to root_path, notice: 'Galpão cadastrado com sucesso'
   end
 end
