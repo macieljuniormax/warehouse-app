@@ -4,6 +4,7 @@ class WarehousesController < ApplicationController
   end
 
   def new
+    @warehouse = Warehouse.new
   end
 
   def create
@@ -16,12 +17,19 @@ class WarehousesController < ApplicationController
 
     # 2 - Criar um novo galpão no banco de dados
     warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :description, :address, :cep, :area)
-    warehouse = Warehouse.new(warehouse_params)
-    warehouse.save()
+    @warehouse = Warehouse.new(warehouse_params)
+
+    if @warehouse.save()
+      flash[:notice] = "Galpão cadastrado com sucesso."
+      redirect_to root_path
+    else
+      flash.now[:notice] = "Galpão não cadastrado." # utilizada apenas na requisição que ela é criada
+      render 'new'
+    end
+    
 
     # 3 - Redirecionar para a tela incial
-    flash[:notice] = "Galpão cadastrado com sucesso."
-    redirect_to root_path
+    
 
     # redirect_to root_path, notice: 'Galpão cadastrado com sucesso'
   end
