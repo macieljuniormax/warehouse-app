@@ -2,12 +2,13 @@
 <h2><%= @warehouse.description %></h2>
 
 <div>
-  <strong>Nome:</strong> <%= @warehouse.name %>
-  <strong>Cidade:</strong> <%= @warehouse.city %>
-  <strong>Área:</strong> <%= @warehouse.area %> m²
-  <strong>Endereço:</strong> <%= @warehouse.address %> <strong>CEP:</strong> <%= @warehouse.cep %>
-  <%= @warehouse.description %>
+  <p><strong>Nome:</strong> <%= @warehouse.name %></p>
+  <p><strong>Cidade:</strong> <%= @warehouse.city %></p>
+  <p><strong>Área:</strong> <%= @warehouse.area %> m²</p>
+  <p><strong>Endereço:</strong> <%= @warehouse.address %> <strong>CEP:</strong> <%= @warehouse.cep %></p>
+  <p><%= @warehouse.description %></p>
 
+  <%= link_to 'Editar', edit_warehouse_path(@warehouse.id) %>
   <%= link_to 'Voltar', root_path %>
 
 </div>
