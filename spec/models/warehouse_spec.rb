@@ -9,7 +9,7 @@ RSpec.describe Warehouse, type: :model do
                                   city: 'Rio de Janeiro', area: 1000, description: 'Novo galpão no Rio de Janeiro')
   
         # Act
-        # result = warehouse.valid?
+        result = warehouse.valid?
   
         # Assert
         expect(result).to eq false
@@ -99,6 +99,20 @@ RSpec.describe Warehouse, type: :model do
       first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address: 'Endereço', cep: '25000-000', 
                                       city: 'Rio de Janeiro', area: 1000, description: 'Novo galpão no Rio de Janeiro')
       second_warehouse = Warehouse.new(name: 'Niterói', code: 'RIO', address: 'Avenida', cep: '25000-123', 
+                                       city: 'Niterói', area: 2000, description: 'Outro galpão no Rio de Janeiro')
+
+      # Act
+      result = second_warehouse.valid?
+
+      # Assert
+      expect(result).to eq false
+    end
+
+    it 'false when name is already in use' do
+      # Arrange
+      first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address: 'Endereço', cep: '25000-000', 
+                                      city: 'Rio de Janeiro', area: 1000, description: 'Novo galpão no Rio de Janeiro')
+      second_warehouse = Warehouse.new(name: 'Rio', code: 'RIN', address: 'Avenida', cep: '25000-123', 
                                        city: 'Niterói', area: 2000, description: 'Outro galpão no Rio de Janeiro')
 
       # Act
