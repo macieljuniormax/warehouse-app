@@ -121,5 +121,41 @@ RSpec.describe Warehouse, type: :model do
       # Assert
       expect(result).to eq false
     end
+
+    it 'false when cep is invalid' do
+      # Arrange
+      warehouse = Warehouse.new(name: 'Rio', code: 'RIN', address: 'Avenida', cep: '2500-023', 
+                                       city: 'Niterói', area: 2000, description: 'Outro galpão no Rio de Janeiro')
+
+      # Act
+      result = warehouse.valid?
+
+      # Assert
+      expect(result).to eq false
+    end
+
+    it 'false when cep is invalid' do
+      # Arrange
+      warehouse = Warehouse.new(name: 'Rio', code: 'RIN', address: 'Avenida', cep: '250000-023', 
+                                       city: 'Niterói', area: 2000, description: 'Outro galpão no Rio de Janeiro')
+
+      # Act
+      result = warehouse.valid?
+
+      # Assert
+      expect(result).to eq false
+    end
+
+    it 'false when cep is invalid' do
+      # Arrange
+      warehouse = Warehouse.new(name: 'Rio', code: 'RIN', address: 'Avenida', cep: '25000-02a', 
+                                       city: 'Niterói', area: 2000, description: 'Outro galpão no Rio de Janeiro')
+
+      # Act
+      result = warehouse.valid?
+
+      # Assert
+      expect(result).to eq false
+    end
   end
 end
