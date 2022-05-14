@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  before_action :set_warehouse, only: [:show, :edit, :update]
+  before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
 
   def show; end
 
@@ -40,6 +40,11 @@ class WarehousesController < ApplicationController
     end 
   end
 
+  def destroy
+    @warehouse.destroy
+    redirect_to root_path, notice: 'Galpão removido com sucesso'
+  end
+
   private
   def set_warehouse
     @warehouse = Warehouse.find(params[:id])
@@ -48,5 +53,4 @@ class WarehousesController < ApplicationController
   def warehouse_params
     params.require(:warehouse).permit(:name, :code, :city, :description, :address, :cep, :area)
   end
-
 end
