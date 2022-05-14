@@ -1,7 +1,7 @@
 class WarehousesController < ApplicationController
-  def show
-    @warehouse = Warehouse.find(params[:id])
-  end
+  before_action :set_warehouse, only: [:show, :edit, :update]
+
+  def show; end
 
   def new
     @warehouse = Warehouse.new
@@ -16,7 +16,6 @@ class WarehousesController < ApplicationController
     # 1 - Receber os dados enviados
 
     # 2 - Criar um novo galpão no banco de dados
-    warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :description, :address, :cep, :area)
     @warehouse = Warehouse.new(warehouse_params)
 
     if @warehouse.save()
@@ -30,20 +29,24 @@ class WarehousesController < ApplicationController
     # redirect_to root_path, notice: 'Galpão cadastrado com sucesso'
   end
 
-  def edit
-    @warehouse = Warehouse.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @warehouse = Warehouse.find(params[:id])
-    warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :description, :address, :cep, :area)
-
-     if @warehouse.update(warehouse_params)
-      redirect_to warehouse_path(@warehouse.id), notice: 'Galpão atualizado com sucesso'
-     else
-      flash.now[:notice] = "Não foi possível atualizar o galpão." # utilizada apenas na requisição que ela é criada
-      render 'edit'
-     end 
-    
+    if @warehouse.update(warehouse_params)
+    redirect_to warehouse_path(@warehouse.id), notice: 'Galpão atualizado com sucesso'
+    else
+    flash.now[:notice] = "Não foi possível atualizar o galpão." # utilizada apenas na requisição que ela é criada
+    render 'edit'
+    end 
   end
+
+  private
+  def set_warehouse
+    @warehouse = Warehouse.find(params[:id])
+  end
+
+  def warehouse_params
+    params.require(:warehouse).permit(:name, :code, :city, :description, :address, :cep, :area)
+  end
+
 end
