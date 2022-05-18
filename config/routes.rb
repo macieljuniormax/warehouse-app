@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root  to: 'home#index'  #get '/', to: 'home#index' 
   resources :warehouses, only: [:show, :new, :create, :edit, :update, :destroy]
-
-
+  get '/suppliers', to: 'suppliers#index'
+  resources :suppliers, only: [:show, :new, :create, :edit, :update]
 
   # CRUD
   # Create  Criar
