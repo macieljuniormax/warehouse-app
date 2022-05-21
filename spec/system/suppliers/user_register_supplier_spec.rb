@@ -32,7 +32,7 @@ describe 'Usuário cadastra um fornecedor' do
     click_on 'Cadastrar novo fornecedor'
     fill_in 'Nome Fantasia', with: 'ACME'
     fill_in 'Razão Social', with: 'ACME LTDA'
-    fill_in 'CNPJ', with: '47176140000189'
+    fill_in 'CNPJ', with: '12.123.123/0001-01'
     fill_in 'Endereço', with: 'Av das Palmas, 100'
     fill_in 'Cidade', with: 'Bauru'
     fill_in 'Estado', with: 'SP'
@@ -57,7 +57,7 @@ describe 'Usuário cadastra um fornecedor' do
     click_on 'Cadastrar novo fornecedor'
     fill_in 'Nome Fantasia', with: ''
     fill_in 'Razão Social', with: ''
-    fill_in 'CNPJ', with: '47176140000189'
+    fill_in 'CNPJ', with: '12.123.123/0001-01'
     fill_in 'Endereço', with: 'Av das Palmas, 100'
     fill_in 'Cidade', with: ''
     fill_in 'Estado', with: 'SP'
@@ -68,6 +68,5 @@ describe 'Usuário cadastra um fornecedor' do
     expect(page).to have_content('Fornecedor não cadastrado')
     expect(page).to have_content('Nome Fantasia não pode ficar em branco')
     expect(page).to have_content('Razão Social não pode ficar em branco')
-    expect(page).to have_content('Cidade não pode ficar em branco')
   end
 end

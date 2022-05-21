@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário vê detalhes do fornecedores' do
   it 'a partir da tela inicial' do
     # Arrage
-    Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '434472146', 
+    Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '12.123.123/0001-01', 
       full_address: 'Av das Palmeiras, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
 
     # Act 
@@ -16,7 +16,7 @@ describe 'Usuário vê detalhes do fornecedores' do
     # Assert
     expect(page).to have_content('Fornecedor: ACME')
     expect(page).to have_content('Razão social: ACME LTDA')
-    expect(page).to have_content('Número de registro: 434472146')
+    expect(page).to have_content('Número de registro: 12.123.123/0001-01')
     expect(page).to have_content('Endereço: Av das Palmeiras, 100')
     expect(page).to have_content('Cidade: Bauru')
     expect(page).to have_content('Estado: SP')
@@ -26,7 +26,7 @@ describe 'Usuário vê detalhes do fornecedores' do
 
   it 'e volta para a tela inicial' do
     # Arrage
-    Supplier.create!(corporate_name: 'Spark industries Brazil LTDA', brand_name: 'Spark', registration_number: '434472147', 
+    Supplier.create!(corporate_name: 'Spark industries Brazil LTDA', brand_name: 'Spark', registration_number: '12.123.123/0001-01', 
       full_address: 'Torre da Indústria, 250', city: 'Teresina', state: 'PI', email: 'vendas@spark.com')
 
     # Act 
