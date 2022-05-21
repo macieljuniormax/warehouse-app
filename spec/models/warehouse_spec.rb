@@ -16,7 +16,7 @@ RSpec.describe Warehouse, type: :model do
 
 
         # Other options
-        expect(result).to be_falsey
+        # expect(result).to be_falsey
 
         # expect(warehouse).not_to be_valid # => executa o valid? e espera que seja falso
 
