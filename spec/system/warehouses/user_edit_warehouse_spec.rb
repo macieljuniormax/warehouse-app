@@ -23,7 +23,7 @@ describe 'Usuário edita um galpão' do
     expect(page).to have_field('Área', with: '100000')
   end
 
-  it 'a partir da página de dealhes' do
+  it 'com sucesso' do
     # Arrange
     warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
                                  address: 'Avenida do Aeroporto, 1000', cep: '15000-000', 
