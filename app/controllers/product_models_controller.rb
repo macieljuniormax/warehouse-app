@@ -9,6 +9,7 @@ class ProductModelsController < ApplicationController
 
   def new
     @product_model = ProductModel.new
+    @suppliers = Supplier.all
   end
 
   def create
@@ -19,6 +20,7 @@ class ProductModelsController < ApplicationController
       # redirect_to product_model_path
       redirect_to @product_model # procura a rota show
     else
+      @suppliers = Supplier.all
       flash.now[:notice] = "Modelo de Produto não cadastrado." # utilizada apenas na requisição que ela é criada
       render 'new'
     end

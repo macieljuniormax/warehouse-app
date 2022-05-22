@@ -49,6 +49,7 @@ describe 'Usuários vê modelos de produtos' do
     # Assert
     expect(page).to have_content 'Nenhum modelo de produto cadastrado'
   end
+  
   it 'com sucesso' do
     # Arrange 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos SA', brand_name: 'Samsung', 
