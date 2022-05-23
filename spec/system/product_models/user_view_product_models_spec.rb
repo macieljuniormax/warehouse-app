@@ -1,11 +1,24 @@
 require 'rails_helper'
 
 describe 'Usuários vê modelos de produtos' do
-  it 'a partir do menu' do
+  it 'se estiver autenticado' do
     # Arrange 
 
     # Act
     visit root_path
+    within('nav') do
+      click_on 'Modelos de Produtos'
+    end
+    # Assert
+    expect(current_path).to eq new_user_session_path
+  end
+
+  it 'a partir do menu' do
+    # Arrange 
+    user = User.create!(email: 'macieljunior@gmail.com', password: 'password')
+    # Act
+    visit root_path
+    login(user)
     within('nav') do
       click_on 'Modelos de Produtos'
     end
@@ -15,6 +28,7 @@ describe 'Usuários vê modelos de produtos' do
 
   it 'com sucesso' do
     # Arrange 
+    user = User.create!(email: 'macieljunior@gmail.com', password: 'password')
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos SA', brand_name: 'Samsung', 
                                 registration_number: '12.123.123/0001-00', 
                                 full_address: 'Av das Nações Unidas, 1000', city: 'São Paulo', 
@@ -25,6 +39,7 @@ describe 'Usuários vê modelos de produtos' do
                          sku: 'SOU71_SAMSUNG_NOIZ77', supplier: supplier)
 
     # Act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Modelos de Produtos'
@@ -40,8 +55,9 @@ describe 'Usuários vê modelos de produtos' do
 
   it 'e não existem produtos cadastrados' do
     # Arrange 
-
+    user = User.create!(email: 'macieljunior@gmail.com', password: 'password')
     # Act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Modelos de Produtos'
@@ -52,6 +68,7 @@ describe 'Usuários vê modelos de produtos' do
   
   it 'com sucesso' do
     # Arrange 
+    user = User.create!(email: 'macieljunior@gmail.com', password: 'password')
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos SA', brand_name: 'Samsung', 
                                 registration_number: '12.123.123/0001-00', 
                                 full_address: 'Av das Nações Unidas, 1000', city: 'São Paulo', 
@@ -62,6 +79,7 @@ describe 'Usuários vê modelos de produtos' do
                          sku: 'SOU71_SAMSUNG_NOIZ77', supplier: supplier)
 
     # Act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Modelos de Produtos'
