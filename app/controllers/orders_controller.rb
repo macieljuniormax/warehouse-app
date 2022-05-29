@@ -10,6 +10,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def search
+   @code = params["query"]
+   @order = Order.find_by(code: params["query"])
+  end
+  
+
   def create
     order_params = params.require(:order).permit(:warehouse_id, :supplier_id, :estimated_delivery_date)
     @order = Order.new(order_params)
