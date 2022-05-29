@@ -29,8 +29,7 @@ describe 'Usuário cadastra um pedido' do
                                 registration_number: '12.123.123/0001-00', 
                                 full_address: 'Av das Nações Unidas, 1000', city: 'São Paulo', 
                                 state: 'SP', email: 'sac@samsung.com.br')
-
-    
+    allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABCD1234')
 
     # Act
     login_as(user)
@@ -43,6 +42,7 @@ describe 'Usuário cadastra um pedido' do
 
     # Assert
     expect(page).to have_content 'Pedido registrado com sucesso.'
+    expect(page).to have_content 'Pedido ABCD1234'
     expect(page).to have_content 'Galpão de destino: Aeroporto SP'
     expect(page).to have_content 'Fornecedor: Samsung Eletrônicos SA'
     expect(page).to have_content 'Usuário responsável: Maciel | macieljunior@gmail.com'
