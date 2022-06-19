@@ -2,12 +2,5 @@
 
 <%= @orders.count %>
 <% @orders.each do |order| %>
-  <dl>
-    <dt>Código:</dt>
-    <dd> <%= order.code %></dd>
-    <dt>Galpão de Destino:</dt>
-    <dd> <%= order.warehouse.name %></dd>
-    <dt>Fornecedor:</dt>
-    <dd> <%= order.supplier.corporate_name %></dd>
-  </dl>
+  <%= render order %>
 <% end %>

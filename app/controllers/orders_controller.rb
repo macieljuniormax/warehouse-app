@@ -1,5 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+
+  def index
+    @orders = current_user.orders
+  end
+  
+  
   def new 
     @order = Order.new
     @warehouses = Warehouse.all
@@ -8,6 +14,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+
+    redirect_to root_path, alert: 'Você não possui acesso a esse pedido.' unless @order.user == current_user
+    
   end
 
   def search
