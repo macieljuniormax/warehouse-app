@@ -1,0 +1,17 @@
+<%= form_with(model: @order) do |order| %>
+  <div>
+    <%= order.label :warehouse_id %>
+    <%= order.collection_select :warehouse_id, @warehouses, :id, :full_description %>
+  </div> 
+  <div>
+    <%= order.label :supplier_id  %>
+    <%= order.collection_select :supplier_id, @suppliers, :id, :corporate_name %>
+  </div> 
+  <div>
+    <%= order.label :estimated_delivery_date %>
+    <%= order.date_field :estimated_delivery_date %>
+  </div> 
+  <div>
+    <%= order.submit 'Gravar' %>
+  </div> 
+<% end %>
